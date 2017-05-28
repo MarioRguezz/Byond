@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Byond.DropDown">
+	<ContentView.Content>
+		<StackLayout Orientation="Horizontal" Padding="5" Spacing="10">
+			<Label x:Name="LabelRef" VerticalOptions="Center">
+			</Label>
+			<Picker x:Name="PickerRef" HorizontalOptions="FillAndExpand" />
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>

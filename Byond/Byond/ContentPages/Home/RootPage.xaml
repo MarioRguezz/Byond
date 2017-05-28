@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Byond.RootPage" xmlns:local="clr-namespace:Byond;assembly=Byond" xmlns:i18n="clr-namespace:Byond;assembly=Byond">
+	<local:BasePage.Content>
+		<Grid Padding="0">
+			<Image Source="FONDO2.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="Fill" />
+			<StackLayout>
+				<Label Text="Alumno" x:Name="username" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#FFF" Margin="0,40,0,0" />
+				<ListView x:Name="ListView"  BackgroundColor="Transparent" SeparatorColor="White" HorizontalOptions="FillAndExpand" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" Padding="10">
+									<StackLayout Padding="5" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+										<Label Text="{Binding nombre}" HorizontalOptions="FillAndExpand" TextColor="#FFF" Margin="15,0,0,0" />
+										<Label Text="{Binding porcentaje,StringFormat='{0:N}%'}"  HorizontalOptions="End" TextColor="#FFF" Margin="15,0,0,0" />
+									</StackLayout>
+									<StackLayout.GestureRecognizers>
+										<TapGestureRecognizer Tapped="TapItem" />
+									</StackLayout.GestureRecognizers>
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+					<ListView.Footer>
+						<BoxView HeightRequest="0" />
+					</ListView.Footer>
+				</ListView>
+				<Button Text="Cerrar Sesión" TextColor="#FFF" BackgroundColor="Transparent" Margin="0,0,10,5" HorizontalOptions="End" Clicked="Singout" />
+			</StackLayout>
+		</Grid>
+	</local:BasePage.Content>
+</local:BasePage>

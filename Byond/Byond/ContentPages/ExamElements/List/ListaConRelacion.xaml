@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Byond.ListaConRelacion" HorizontalOptions="FillAndExpand" HeightRequest="400" xmlns:local="clr-namespace:Byond;assembly=Byond" BackgroundColor="#f1f1f1">
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="1*" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="1*" />
+	</Grid.RowDefinitions>
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="1*" />
+		<ColumnDefinition Width="1*" />
+	</Grid.ColumnDefinitions>
+	<StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+		<Label x:Name="_titulo" HorizontalOptions="Center" Text="..." />
+	</StackLayout>
+	<local:ListBox x:Name="_listItems" Grid.Column="0" Grid.Row="1" />
+	<local:ListBox x:Name="_listCasillas" Grid.Column="1" Grid.Row="1" />
+	<StackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+		<Label HorizontalOptions="Center" Text="RESPUESTAS" />
+	</StackLayout>
+	<ListView x:Name="_listRespuestas" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HasUnevenRows="true">
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<StackLayout Padding="8">
+						<Label Text="{Binding Value}" TextColor="#000" FontSize="15" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" />
+					</StackLayout>
+				</ViewCell>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</Grid>

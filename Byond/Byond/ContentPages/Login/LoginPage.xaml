@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Byond.LoginPage" xmlns:local="clr-namespace:Byond;assembly=Byond" xmlns:i18n="clr-namespace:Byond;assembly=Byond">
+	<local:BasePage.Content>
+		<Grid Padding="0">
+			<Image Source="FONDO2.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="Fill" />
+			<StackLayout Padding="25,10,25,10">
+				<Image Source="logo.png" WidthRequest="130" Margin="30" HorizontalOptions="Center" VerticalOptions="Center" />
+				<StackLayout Spacing="6" HorizontalOptions="FillAndExpand" Margin="0,30,0,0" VerticalOptions="FillAndExpand">
+					<StackLayout Spacing="5" Orientation="Vertical" HorizontalOptions="FillAndExpand" Margin="0,0,0,20">
+						<Entry x:Name="EntryEmail" HorizontalOptions="FillAndExpand" Placeholder="Correo" Keyboard="Email" HeightRequest="45" />
+						<Entry x:Name="EntryPass" HorizontalOptions="FillAndExpand" Placeholder="Contraseña" IsPassword="true" HeightRequest="45" />
+					</StackLayout>
+					<Button Text="INGRESAR" TextColor="#FFF" BackgroundColor="Transparent" BorderColor="White" BorderWidth="1"  Clicked="LoginClicked" />
+				</StackLayout>
+			</StackLayout>
+		</Grid>
+	</local:BasePage.Content>
+</local:BasePage>

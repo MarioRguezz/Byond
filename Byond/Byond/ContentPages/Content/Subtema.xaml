@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BasePage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Byond.Subtema" xmlns:local="clr-namespace:Byond;assembly=Byond" xmlns:i18n="clr-namespace:Byond;assembly=Byond">
+	<local:BasePage.Content>
+		<Grid Padding="0">
+			<Image Source="FONDO2.png" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="Fill" />
+			<StackLayout>
+				<StackLayout.Margin>
+				<OnPlatform x:TypeArguments="Thickness" iOS="0,25,0,0" Android="0" />
+			</StackLayout.Margin>
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+						<Image Source="back.png" WidthRequest="20" HeightRequest="20" />
+						<Label Text="Atrás" VerticalTextAlignment="Center" TextColor="White" />
+						<StackLayout.GestureRecognizers>
+							<TapGestureRecognizer Tapped="BackTapped" />
+						</StackLayout.GestureRecognizers>
+					</StackLayout>
+					<Label Text="Tema"  FontAttributes="Bold" x:Name="topicname" HorizontalTextAlignment="Center" TextColor="#FFF" />
+				<ListView x:Name="ListView" BackgroundColor="Transparent" SeparatorColor="White" HorizontalOptions="FillAndExpand" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" Padding="10">
+									<StackLayout Padding="5" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+										<Image Source="back.png" WidthRequest="20" HeightRequest="20" />
+										<Label Text="{Binding Nombre}" HorizontalOptions="FillAndExpand" TextColor="#FFF" Margin="15,0,0,0" />
+									</StackLayout>
+									<StackLayout.GestureRecognizers>
+										<TapGestureRecognizer Tapped="TapItem" />
+									</StackLayout.GestureRecognizers>
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+					<ListView.Footer>
+						<BoxView HeightRequest="0" />
+					</ListView.Footer>
+				</ListView>
+				<Button x:Name="examen" Text="Examen" VerticalOptions="Start" IsVisible="false" TextColor="#FFF" BackgroundColor="Transparent" Clicked="exam" />
+			</StackLayout>
+		</Grid>
+	</local:BasePage.Content>
+</local:BasePage>

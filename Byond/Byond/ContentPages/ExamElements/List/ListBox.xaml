@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Byond.ListBox">
+	<ContentView.Content>
+		<StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+			<Label x:Name="LabelRef" HorizontalOptions="Center" />
+			<StackLayout Padding="10,0,0,0">
+				<ListView x:Name="ListViewRef" HorizontalOptions="FillAndExpand" HasUnevenRows="true">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout Padding="8">
+									<Label Text="{Binding Value}" TextColor="#000" FontSize="15" HorizontalTextAlignment="Start" HorizontalOptions="FillAndExpand" />
+								</StackLayout>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
