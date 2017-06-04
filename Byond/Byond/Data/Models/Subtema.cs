@@ -21,6 +21,33 @@ namespace Byond
 		public List<Audio> materialaudio { get; set; }
 		public List<Documento> materialdoc { get; set; }
 		public List<Video> materialvideo { get; set; }
+
+
+		public string Imagen
+		{
+			get
+			{
+				var img = "";
+
+				if (materialaudio != null && materialaudio.Count > 0)
+				{
+					img = "headphones.png";
+				}
+
+				if (materialdoc != null && materialdoc.Count > 0)
+				{
+					img = "file.png";
+				}
+
+				if (materialvideo != null && materialvideo.Count > 0)
+				{
+					img = "play.png";
+				}
+
+				return img;
+			}
+		}
+
 	}
 
 

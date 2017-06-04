@@ -12,7 +12,9 @@ namespace Byond
 		List<string> Casillas = new List<string>();
 		ObservableCollection<ListItem> CurrentCasillas = new ObservableCollection<ListItem>();
 
-		ObservableCollection<ListItem> Respuestas = new ObservableCollection<ListItem>();
+		public ObservableCollection<ListItem> Respuestas = new ObservableCollection<ListItem>();
+		public string id { get; set; }
+		public int id_pregunta { get; set; }
 
 
 		public ListaConRelacion()
@@ -35,10 +37,12 @@ namespace Byond
 					CurrentCasillas.Remove(y);
 
 
-					var z = x + " - " + y;
+					var z = x.Value + " - " + y.Value;
 					Respuestas.Add(new ListItem()
 					{
 						Value = z,
+						Item = x.Item,
+						Casilla = y.Casilla,
 					});
 
 					_listItems.ListView.SelectedItem = null;
@@ -74,6 +78,8 @@ namespace Byond
 					Respuestas.Add(new ListItem()
 					{
 						Value = z,
+						Item = x.Item,
+						Casilla = y.Casilla,
 					});
 
 					_listItems.ListView.SelectedItem = null;
@@ -86,29 +92,54 @@ namespace Byond
 			{
 				if (e.SelectedItem == null)
 					return;
+
+				var item = e.SelectedItem as ListItem;
+
+				var str = item.Value.Split('-');
+				var strItem = str[0].Trim();
+				var strCasilla = str[1].Trim();
+
+
+				CurrentCasillas.Add(new ListItem()
+				{
+					Casilla = item.Casilla,
+					Value = strCasilla,
+				});
+
+				CurrentItems.Add(new ListItem()
+				{
+					Item = item.Item,
+					Value = strItem,
+				});
+
+				Respuestas.Remove(item);
+
+
 				_listRespuestas.SelectedItem = null;
 			};
 		}
 
 
-		public void SetItems(string titulo, List<string> items, List<string> casillas)
+		public void SetItems(string titulo, List<ListItem> items, List<ListItem> casillas)
 		{
 			_titulo.Text = titulo;
+			_titulo.TextColor = Color.FromHex("FFF");
 
 			_listItems.Label.Text = "ITEMS";
+			_listItems.Label.TextColor = Color.FromHex("FFF");
 
-			Items = items;
+			//Items = items;
 			CurrentItems = new ObservableCollection<ListItem>();
-			foreach (var item in Items)
-				CurrentItems.Add(new ListItem() { Value = item });
+			foreach (var item in items)
+				CurrentItems.Add(item);
 			_listItems.Values = CurrentItems;
 
 			_listCasillas.Label.Text = "CASILLAS";
-
-			Casillas = casillas;
+			_listCasillas.Label.TextColor = Color.FromHex("FFF");
+			//Casillas = casillas;
 			CurrentCasillas = new ObservableCollection<ListItem>();
-			foreach (var item in Casillas)
-				CurrentCasillas.Add(new ListItem() { Value = item });
+			foreach (var item in casillas)
+				CurrentCasillas.Add(item);
 			_listCasillas.Values = CurrentCasillas;
 
 			_listRespuestas.ItemsSource = Respuestas;

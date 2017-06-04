@@ -18,10 +18,10 @@
 				<ListView x:Name="ListView" BackgroundColor="Transparent" SeparatorColor="White" HorizontalOptions="FillAndExpand" HasUnevenRows="true">
 					<ListView.ItemTemplate>
 						<DataTemplate>
-							<ViewCell>
+							<ViewCell x:Name="cell">
 								<StackLayout Orientation="Vertical" Spacing="0" HorizontalOptions="FillAndExpand" Padding="10">
 									<StackLayout Padding="5" Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-										<Image Source="back.png" WidthRequest="20" HeightRequest="20" />
+										<Image Source="{Binding Imagen}" WidthRequest="20" HeightRequest="20" />
 										<Label Text="{Binding Nombre}" HorizontalOptions="FillAndExpand" TextColor="#FFF" Margin="15,0,0,0" />
 									</StackLayout>
 									<StackLayout.GestureRecognizers>

@@ -11,13 +11,17 @@ namespace Byond
 	public partial class Exam : BasePage
 	{
 		public ResponseExam _exam = null;
-		List<Opcion> listaOpciones;
+		//List<Opcion> listaOpciones;
+		//List<Object> Respuestas;
+		List<Respuestas> Respuestas = new List<Respuestas>();
+		List<Object> valoresPregunta = new List<Object>();
+
 
 		public Exam(ResponseExam exam)
 		{
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
-			//exam
+			_exam = exam;
 		}
 
 		protected override void OnAppearing()
@@ -25,251 +29,167 @@ namespace Byond
 			base.OnAppearing();
 			BackgroundImage = "FONDO2.png";
 			AddItems();
-			GetExam();
 		}
 
-		async void GetExam()
+		async void send(object sender, System.EventArgs e)
 		{
 
+			var user = PropertiesManager.GetUserInfo();
+			ShowProgress("Validando");
+			//	var response = await ClientByond.RespuestaExamen("", "","");
+			//"data":0
+			foreach (var pregunta in valoresPregunta)
+			{
+				Respuestas _res = new Respuestas();
 
+				if (pregunta is OpcionInput)
+				{
+					var oinput = pregunta as OpcionInput;
+					var x = oinput.Entry.Text;
+					_res.id = oinput.id;
+					_res.id_pregunta = oinput.id_pregunta+"";
+					_res.respuestas = x;
+				}
 
+				if (pregunta is RadioButtonGroup)
+				{
+					var radio = pregunta as RadioButtonGroup;
+
+					var x = radio.SelectedIndex;
+					_res.id = radio.id;
+					_res.id_pregunta = radio.id_pregunta+"";
+					_res.respuestas = x;
+				}
+
+				if (pregunta is ListaConRelacion)
+				{
+					var listaRelacionada = pregunta as ListaConRelacion;
+					var lista = new List<RelacionObj>();
+
+					foreach (var item in listaRelacionada.Respuestas)
+					{
+						lista.Add(new RelacionObj
+						{
+							item = item.Item,
+							casilla = item.Casilla,
+						});
+					}
+
+					_res.id = listaRelacionada.id;
+					_res.id_pregunta = listaRelacionada.id_pregunta+"";
+					_res.respuestas = lista;
+				}
+
+				Respuestas.Add(_res);
+			}
+			var response = await ClientByond.RespuestaExamen(user.Mat_Alumno, _exam.data.id_Tema, Respuestas);
+
+			HideProgress();
 		}
-
 
 
 		void AddItems()
 		{
-			listaOpciones = new List<Opcion>();
 
-			#region items
-
-			listaOpciones.Add(new Opcion()
+			foreach (var pregunta in _exam.data.preguntas)
 			{
-				Tipo = EncuestaElemento.Label,
-				Label = "Label Izquierda",
-				HorizontalOption = LayoutOptions.Start,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Label,
-				Label = "Label Centrado",
-				HorizontalOption = LayoutOptions.Center,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Label,
-				Label = "Label Derecha",
-				HorizontalOption = LayoutOptions.End,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Separador,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Label,
-				Label = "TextBox:",
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.TextBox,
-				Label = "TextBox1",
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.TextBox,
-				Label = "TextBox2",
-				Values = new List<string>(){
-					"con valor por default"
-				},
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Separador,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.CheckBox,
-				Label = "CheckBox",
-				Values = new List<string>(){
-					"opcion sola",
-				},
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.CheckBox,
-				Label = "CheckBoxs",
-				Values = new List<string>(){
-					"opcion 1",
-					"opcion 2",
-					"opcion 3",
-				},
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Separador,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.RadioButton,
-				Label = "RadioButton",
-				Values = new List<string>(){
-					"opcion sola",
-				},
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.RadioButton,
-				Label = "CheckBoxs",
-				Values = new List<string>(){
-					"opcion 1",
-					"opcion 2",
-					"opcion 3",
-				},
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Separador,
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.DropDown,
-				Label = "DropDown",
-				Values = new List<string>(){
-					"opcion 1",
-					"opcion 2",
-					"opcion 3",
-				},
-			});
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.Separador,
-			});
-
-
-			listaOpciones.Add(new Opcion()
-			{
-				Tipo = EncuestaElemento.ListBox,
-				Label = "ListBox",
-				Values = new List<string>(){
-					"opcion 1",
-					"opcion 2",
-					"opcion 3",
-				},
-			});
-
-			#endregion
-
-
-			RenderEncuesta();
-		}
-
-
-		async void RenderEncuesta()
-		{
-			foreach (var opcion in listaOpciones)
-			{
-				switch (opcion.Tipo)
+				if (pregunta.tipo == 1)
 				{
-					case EncuestaElemento.Label:
 
-						var label = new Label();
-						label.Text = opcion.Label;
-						label.HorizontalOptions = opcion.HorizontalOption;
-						Container.Children.Add(label);
-
-						break;
-					case EncuestaElemento.TextBox:
-
-						var input = new OpcionInput();
-						input.Label.Text = opcion.Label;
-
-						if (opcion.Values != null && opcion.Values.Count > 0)
-							input.Entry.Text = opcion.Values[0];
-
-						Container.Children.Add(input);
-
-						break;
-					case EncuestaElemento.CheckBox:
-
-						if (opcion.Values != null)
-						{
-							var checkBoxGroup = new CheckBoxGroup(opcion.Values.ToArray());
-							checkBoxGroup.Label.Text = opcion.Label;
-							Container.Children.Add(checkBoxGroup);
-						}
-
-
-						break;
-					case EncuestaElemento.RadioButton:
-
-						if (opcion.Values != null)
-						{
-							var radioGroup = new RadioButtonGroup(opcion.Values.ToArray());
-							radioGroup.Label.Text = opcion.Label;
-							Container.Children.Add(radioGroup);
-						}
-
-
-						break;
-					case EncuestaElemento.DropDown:
-
-						if (opcion.Values != null)
-						{
-							var dropDown = new DropDown();
-							dropDown.Label.Text = opcion.Label;
-							dropDown.Values = opcion.Values;
-							Container.Children.Add(dropDown);
-						}
-
-						break;
-					case EncuestaElemento.ListBox:
-
-
-						//var listView = new ListView ();
-						//listView.HeightRequest = opcion.Values.Count * 50;
-						//listView.ItemsSource = opcion.Values;
-						//listView.RowHeight = 50;
-
-						var listBox = new ListBox();
-						listBox.Label.Text = opcion.Label;
-						//listBox.Values = opcion.Values;
-
-						Container.Children.Add(listBox);
-
-						break;
-					case EncuestaElemento.Separador:
-
-						var boxView = new BoxView()
-						{
-							HeightRequest = 1,
-							HorizontalOptions = LayoutOptions.FillAndExpand,
-							BackgroundColor = Color.Gray,
-						};
-
-						Container.Children.Add(boxView);
-
-						break;
+					var input = new OpcionInput();
+					input.Label.Text = pregunta.titulo;
+					input.Label.TextColor = Color.FromHex("FFF");
+					input.id = pregunta.JsonObject.guid;
+					input.id_pregunta = pregunta.ID_Pregunta;
+					input.Entry.TextChanged += (sender, e) =>
+					{
+						input.respuestas = e.NewTextValue;
+						System.Diagnostics.Debug.WriteLine("INPUT CHANGED: {0}", e.NewTextValue);
+					};
+					//Respuestas.Add(input);
+					valoresPregunta.Add(input);
+					_stack.Children.Add(input);
 				}
 
-				//await Task.Delay (300);
+				else if (pregunta.tipo == 2)
+				{
+
+					string[] names = new string[pregunta.JsonObject.choices.Count];
+					foreach (ChooseObject choice in pregunta.JsonObject.choices)
+					{
+						for (int i = 0; i < pregunta.JsonObject.choices.Count; i++)
+						{
+							names[i] = pregunta.JsonObject.choices[i].name;
+						}
+
+					}
+					var radioGroup = new RadioButtonGroup(names);
+					radioGroup.id = pregunta.JsonObject.guid;
+					radioGroup.id_pregunta = pregunta.ID_Pregunta;
+					radioGroup.Label.Text = pregunta.titulo;
+					radioGroup.Label.TextColor = Color.FromHex("FFF");
+
+					radioGroup.ItemSelected += (sender, e) =>
+					{
+
+						radioGroup.respuestas = radioGroup.SelectedIndex;
+						System.Diagnostics.Debug.WriteLine("RADIO SELECTED: {0} ID: {1}", radioGroup.Values[0], radioGroup.SelectedIndex);
+					};
+					//	Respuestas.Add(radioGroup);
+					valoresPregunta.Add(radioGroup);
+					_stack.Children.Add(radioGroup);
+				}
+				else //tipo 3
+				{
+
+					ListItem[] items = new ListItem[pregunta.JsonObject.items.Count];
+					foreach (ItemObject choice in pregunta.JsonObject.items)
+					{
+						for (int i = 0; i < pregunta.JsonObject.items.Count; i++)
+						{
+							items[i] = new ListItem()
+							{
+								Value = pregunta.JsonObject.items[i].nombre,
+								Item = pregunta.JsonObject.items[i].guid,
+							};
+						}
+
+					}
+
+					ListItem[] casillas = new ListItem[pregunta.JsonObject.casillas.Count];
+					foreach (CasillasObject choice in pregunta.JsonObject.casillas)
+					{
+						for (int i = 0; i < pregunta.JsonObject.casillas.Count; i++)
+						{
+							casillas[i] = new ListItem()
+							{
+								Value = pregunta.JsonObject.casillas[i].nombre,
+								Casilla = pregunta.JsonObject.casillas[i].guid,
+							};
+						}
+
+					}
+
+					var listaRelacionada2 = new ListaConRelacion();
+					listaRelacionada2.SetItems(pregunta.titulo, items.ToList(),
+											   casillas.ToList());
+					listaRelacionada2.BackgroundColor = Color.Transparent;
+					listaRelacionada2.id = pregunta.JsonObject.guid;
+					listaRelacionada2.id_pregunta = pregunta.ID_Pregunta;
+
+					//Respuestas.Add(listaRelacionada2);
+					valoresPregunta.Add(listaRelacionada2);
+					_stack.Children.Add(listaRelacionada2);
+				}
+
+
 			}
+
+			NavigationPage.SetHasNavigationBar(this, false);
 		}
+
+
+
 
 		async void BackTapped(object sender, System.EventArgs e)
 		{
@@ -286,24 +206,10 @@ namespace Byond
 	}
 
 
-	class Opcion
+	public class RelacionObj
 	{
-		public EncuestaElemento Tipo { get; set; }
-		public string Label { get; set; }
-		public List<string> Opciones { get; set; }
-		public List<string> Values { get; set; }
-		public LayoutOptions HorizontalOption { get; set; }
-	}
-
-	enum EncuestaElemento
-	{
-		Label,
-		TextBox,
-		CheckBox,
-		RadioButton,
-		DropDown,
-		ListBox,
-		Separador,
+		public string casilla { get; set; }
+		public string item { get; set; }
 	}
 
 }

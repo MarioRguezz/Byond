@@ -92,7 +92,45 @@ namespace Byond
 		}
 
 
-		public static async Task<ResponseExam> Exam(string IDex)
+		/*public static async Task<List<Object>> RespuestaExamen(string Mat_Alumno, string IDTema, string Respuestas)
+		{
+			var jsonResponse = await PostObject<Object>({
+				/*new ResponseExam()
+				Mat_Alumno = Mat_Alumno,
+				IDTema = IDTema,
+				Respuestas = Respuestas;*/
+		/*	}, WEB_METHODS.Respuesta);
+
+			if (jsonResponse == null)
+			{
+				return null;
+			}
+
+			return jsonResponse;
+		}*/
+
+
+		public static async Task<string> RespuestaExamen(string Mat_Alumno, string IDTema, List<Respuestas> respuesta)
+		{
+			var jsonResponse = await PostObject<Respuesta>(new Respuesta()
+			{
+				Mat_Alumno = Mat_Alumno,
+				IDTema = IDTema,
+				Respuestas = JsonConvert.SerializeObject(respuesta),
+			}, WEB_METHODS.Respuesta);    
+			if (jsonResponse == null)
+			{
+				return null;
+			}
+
+			return jsonResponse;
+		}
+
+
+
+
+
+		public static async Task<ResponseExam> Exam(int IDex)
 		{
 			var jsonResponse = await GetObject<ResponseExam>(WEB_METHODS.Examen, false, where: "IDex=" + IDex);
 			if (jsonResponse == null || jsonResponse.data == null)

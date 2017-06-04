@@ -153,6 +153,19 @@
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\FONDO2.png" />
     <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\checkbox_off 12.26.14.png" />
+    <BundleResource Include="Resources\checkbox_off.png" />
+    <BundleResource Include="Resources\checkbox_on 12.26.14.png" />
+    <BundleResource Include="Resources\checkbox_on.png" />
+    <BundleResource Include="Resources\checked 12.26.14.png" />
+    <BundleResource Include="Resources\checked.png" />
+    <BundleResource Include="Resources\checked%402x 12.26.14.png" />
+    <BundleResource Include="Resources\checked%402x.png" />
+    <BundleResource Include="Resources\file.png" />
+    <BundleResource Include="Resources\headphones.png" />
+    <BundleResource Include="Resources\play.png" />
+    <BundleResource Include="Resources\unchecked.png" />
+    <BundleResource Include="Resources\unchecked%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

@@ -16,7 +16,7 @@
 	<local:ListBox x:Name="_listItems" Grid.Column="0" Grid.Row="1" />
 	<local:ListBox x:Name="_listCasillas" Grid.Column="1" Grid.Row="1" />
 	<StackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
-		<Label HorizontalOptions="Center" Text="RESPUESTAS" />
+		<Label HorizontalOptions="Center" TextColor="White"  Text="RESPUESTAS" />
 	</StackLayout>
 	<ListView x:Name="_listRespuestas" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HasUnevenRows="true">
 		<ListView.ItemTemplate>

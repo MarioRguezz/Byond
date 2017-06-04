@@ -13,6 +13,10 @@ namespace Byond
 		string[] optionTextArray;
 		public Label Label;
 
+		public string id { get; set; }
+		public int id_pregunta { get; set; }
+		public int respuestas { get; set; }
+
 
 		public List<string> Values
 		{
@@ -141,7 +145,7 @@ namespace Byond
 			var optionLabel = new Label
 			{
 				Text = optionText,
-				TextColor = Color.FromHex("424244"),
+				TextColor = Color.FromHex("FFF"),
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalTextAlignment = TextAlignment.Center,
 				HorizontalTextAlignment = TextAlignment.Start,

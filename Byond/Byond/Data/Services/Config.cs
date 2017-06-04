@@ -9,7 +9,8 @@ namespace Byond
 		Temas,
 		Subtemas,
 		Examen,
-		SubtemaVisto
+		SubtemaVisto,
+		Respuesta
 	}
 
 	public enum WEB_ERROR
@@ -44,6 +45,8 @@ namespace Byond
 					return "temas/examen?";
 				case WEB_METHODS.SubtemaVisto:
 					return "temas/subtema-visto";
+				case WEB_METHODS.Respuesta:
+					return "temas/contestar-examen";
 
 
 

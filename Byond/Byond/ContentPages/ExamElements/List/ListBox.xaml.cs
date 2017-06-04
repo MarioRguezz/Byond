@@ -58,6 +58,9 @@ namespace Byond
 	public class ListItem
 	{
 		public string Value { get; set; }
+
+		public string Item { get; set; }
+		public string Casilla { get; set; }
 	}
 }
 

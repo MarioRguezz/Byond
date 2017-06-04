@@ -1,61 +1,27 @@
 ﻿<Properties StartupConfiguration="{E94769F8-5840-42D6-97C3-253D0F455B97}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../Library/Frameworks/Xamarin.Android.framework/Versions/7.3.1-1/lib/xbuild/Xamarin/Android/Xamarin.Android.Common.targets">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Byond/ContentPages/Content/Exam.xaml.cs">
     <Files>
-      <File FileName="Byond/Data/Services/ClientByond.cs" Line="98" Column="57" />
-      <File FileName="Byond/Data/Services/Config.cs" Line="45" Column="34" />
-      <File FileName="Byond/ContentPages/Content/Exam.xaml.cs" Line="26" Column="35" />
-      <File FileName="Byond/ContentPages/Content/Exam.xaml" Line="7" Column="16" />
-      <File FileName="Byond/obj/Debug/Byond.ContentPages.ExamElements.List.ListaConRelacion.xaml.g.cs" Line="40" Column="1" />
-      <File FileName="Byond/ContentPages/ExamElements/List/ListaConRelacion.xaml" Line="1" Column="1" />
-      <File FileName="../../../../Library/Frameworks/Xamarin.Android.framework/Versions/7.3.1-1/lib/xbuild/Xamarin/Android/Xamarin.Android.Common.targets" Line="1" Column="1" />
+      <File FileName="Byond/ContentPages/Content/Exam.xaml.cs" Line="102" Column="41" />
+      <File FileName="Byond/Data/Services/ClientByond.cs" Line="172" Column="1" />
+      <File FileName="Byond/Data/Services/Config.cs" Line="48" Column="31" />
+      <File FileName="Byond/ContentPages/ExamElements/RadioButton/RadioButtonGroup.cs" Line="180" Column="1" />
+      <File FileName="Byond/ContentPages/ExamElements/List/ListaConRelacion.xaml.cs" Line="88" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Byond" expanded="True">
-            <Node name="Byond" expanded="True">
-              <Node name="ContentPages" expanded="True">
-                <Node name="Content" expanded="True">
-                  <Node name="Exam.xaml" expanded="True" />
-                  <Node name="Subtema.xaml" expanded="True" />
-                </Node>
-                <Node name="ExamElements" expanded="True">
-                  <Node name="List" expanded="True">
-                    <Node name="ListaConRelacion.xaml" expanded="True" />
-                  </Node>
-                </Node>
-                <Node name="Home" expanded="True">
-                  <Node name="RootPage.xaml" expanded="True" />
-                </Node>
-                <Node name="Login" expanded="True">
-                  <Node name="LoginPage.xaml" expanded="True" />
-                </Node>
-              </Node>
-              <Node name="Data" expanded="True">
-                <Node name="Models" expanded="True" />
-                <Node name="Services" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Byond.Droid" expanded="True">
-              <Node name="Resources" expanded="True">
-                <Node name="drawable" expanded="True" />
-                <Node name="drawable-hdpi" expanded="True" />
-                <Node name="drawable-xxx" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="Byond.iOS" expanded="True">
-              <Node name="Resources" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/marioalbertonegreterodriguez/Projects/Byond/Byond/Data/Services/ClientByond.cs" relfile="Byond/Data/Services/ClientByond.cs" line="121" column="1" />
+      <Breakpoint file="/Users/marioalbertonegreterodriguez/Projects/Byond/Byond/Data/Services/ClientByond.cs" relfile="Byond/Data/Services/ClientByond.cs" line="115" column="1" />
+      <Breakpoint file="/Users/marioalbertonegreterodriguez/Projects/Byond/Byond/Data/Services/ClientByond.cs" relfile="Byond/Data/Services/ClientByond.cs" line="168" column="1" />
+      <Breakpoint file="/Users/marioalbertonegreterodriguez/Projects/Byond/Byond/Data/Services/ClientByond.cs" relfile="Byond/Data/Services/ClientByond.cs" line="172" column="1" />
+      <Breakpoint file="/Users/marioalbertonegreterodriguez/Projects/Byond/Byond/ContentPages/Content/Exam.xaml.cs" relfile="Byond/ContentPages/Content/Exam.xaml.cs" line="85" column="1" />
+      <Breakpoint file="/Users/marioalbertonegreterodriguez/Projects/Byond/Byond/ContentPages/Content/Exam.xaml.cs" relfile="Byond/ContentPages/Content/Exam.xaml.cs" line="43" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Byond/Data/Models/Examen.cs" line="27" offsetX="168" offsetY="533" expression="json" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.Byond.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.D516CC0F-1EEB-4194-BF63-504EF0E6C504" />
   <MultiItemStartupConfigurations />
 </Properties>

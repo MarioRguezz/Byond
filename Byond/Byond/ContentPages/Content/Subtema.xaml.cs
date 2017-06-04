@@ -14,6 +14,7 @@ namespace Byond
 		ObservableCollection<Subtemas> _itemsList = new ObservableCollection<Subtemas>();
 		public Topic _tema = null;
 		public ResponseExam _exam = null;
+		public Boolean all = true;
 		public Subtema(Topic tema)
 		{
 			InitializeComponent();
@@ -41,7 +42,16 @@ namespace Byond
 				_itemsList.Clear();
 				foreach (var item in _subtemas)
 				{
-					_itemsList.Add(item);
+					if (item.visto == false)
+					{
+						_itemsList.Add(item);
+						all = false;
+						break;
+					}
+					else if (item.visto == true)
+					{
+						_itemsList.Add(item);
+					}
 				}
 
 				Device.BeginInvokeOnMainThread(() =>
@@ -59,10 +69,13 @@ namespace Byond
 
 			var user = PropertiesManager.GetUserInfo();
 			ShowProgress("Actualizando subtemas");
-			_exam = await ClientByond.Exam(_tema.IDex + "");
+			_exam = await ClientByond.Exam(_tema.IDex);
 			if (_exam != null)
 			{
-
+				if (_exam.data != null && _exam.data.preguntas.Count > 0)
+				{
+					var x = _exam.data.preguntas[0].JsonObject;
+				}
 				examen.IsVisible = true;
 			}
 
@@ -72,13 +85,18 @@ namespace Byond
 		async void BackTapped(object sender, System.EventArgs e)
 		{
 			await Navigation.PopAsync();
+
 		}
 
 		async void exam(object sender, System.EventArgs e)
 		{
-			if (true) //si todos los temas vistos
+			if (all) //si todos los temas vistos
 			{
 				await Navigation.PushAsync(new Exam(_exam));
+			}
+			else
+			{
+				DisplayAlert("Byond", "Complete todas las actividades", "Aceptar");
 			}
 		}
 
